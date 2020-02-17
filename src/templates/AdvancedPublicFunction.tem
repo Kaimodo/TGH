@@ -1,0 +1,104 @@
+function %%FunctionName%% {
+
+<#
+.SYNOPSIS
+    A brief description of the function.
+
+.DESCRIPTION
+	A detailed description of the function.
+
+.PARAMETER ParameterA
+	The description of the ParameterA parameter.
+
+.PARAMETER ParameterB
+	The description of the ParameterB parameter.
+
+.EXAMPLE
+	PS C:\> %%FunctionName%% -ParameterA 'One value' -ParameterB 32
+
+.EXAMPLE
+	PS C:\> %%FunctionName%% 'One value' 32
+
+.INPUTS
+	System.String,System.Int32
+
+.OUTPUTS
+	System.String
+
+.NOTES
+	Author: %%ModuleAuthor%%
+
+.LINK
+	%%ModuleWebsite%%
+
+#>
+
+    [CmdletBinding()]
+    param(
+
+        # parameter options
+        # validation
+        # cast
+        # name and default value
+
+		[Parameter(Position=0, Mandatory=$true)]
+		[ValidateNotNullOrEmpty()]
+		[System.String]
+		$Name,
+
+		[Parameter(Position=1)]
+		[ValidateNotNull()]
+		[System.Int32]
+		$Index
+
+	)
+
+    #--------------------------------------------------#
+    # settings
+    #--------------------------------------------------#
+
+    #--------------------------------------------------#
+    # functions
+    #--------------------------------------------------#
+
+    #--------------------------------------------------#
+    # modules
+    #--------------------------------------------------#
+
+    #--------------------------------------------------#
+    # main
+    #--------------------------------------------------#
+
+    # This block is used to provide optional one-time pre-processing for the function.
+    begin{
+
+        if ($script:ThisModuleLoaded -eq $true) {
+            Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+        }
+        $FunctionName = $MyInvocation.MyCommand.Name
+        Write-Verbose "$($FunctionName): Begin."
+        $TempErrAct = $ErrorActionPreference
+        $ErrorActionPreference = "Stop"
+    }
+
+    # This block is used to provide record-by-record processing for the function.
+    process{
+
+    	try{
+
+
+    	}catch{
+
+  		  throw
+
+		  }finally{
+
+      }
+    }
+
+    # This block is used to provide optional one-time post-processing for the function.
+    end{
+            Write-Verbose "$($FunctionName): End."
+            $ErrorActionPreference = $TempErrAct
+    }
+}

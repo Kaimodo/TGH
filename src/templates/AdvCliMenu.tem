@@ -1,0 +1,144 @@
+function %%FunctionName%% {
+    <#
+    .SYNOPSIS
+    TBD
+    .DESCRIPTION
+    TBD
+    .LINK
+    %%ModuleWebsite%%
+    .EXAMPLE
+    TBD
+    .NOTES
+    Author: %%ModuleAuthor%%
+    #>
+
+    [CmdletBinding()]
+    param(
+    )
+    begin {
+        if ($script:ThisModuleLoaded -eq $true) {
+            Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+        }
+        $FunctionName = $MyInvocation.MyCommand.Name
+        Write-Verbose "$($FunctionName): Begin."
+        $TempErrAct = $ErrorActionPreference
+        $ErrorActionPreference = "Stop"
+        #region Private Functions
+        Function Invoke-Menu {
+            [cmdletbinding()]
+            Param(
+            [Parameter(Position=0,Mandatory=$True,HelpMessage="Enter your menu text")]
+            [ValidateNotNullOrEmpty()]
+            [string]$Menu,
+            [Parameter(Position=1)]
+            [ValidateNotNullOrEmpty()]
+            [string]$Title = "My Menu",
+            [Alias("cls")]
+            [switch]$ClearScreen
+            )
+
+            #clear the screen if requested
+            if ($ClearScreen) {
+            Clear-Host
+            }
+
+            #build the menu prompt
+            $menuPrompt = $title
+            #add a return
+            $menuprompt+="`n"
+            #add an underline
+            $menuprompt+="-"*$title.Length
+            #add another return
+            $menuprompt+="`n"
+            #add the menu
+            $menuPrompt+=$menu
+
+            Read-Host -Prompt $menuprompt
+        } #end function
+        #endregion
+        #region Menu-Functions
+        function Menu1 {
+            Write-Host "Menu 1" -ForegroundColor Yellow
+            sleep -seconds 2
+        }
+        function Menu2 {
+            Write-Host "Menu 2" -ForegroundColor Green
+            sleep -seconds 2
+        }
+        function subMenu1 {
+            Write-Host "SubMenu1" -ForegroundColor Green
+            sleep -seconds 2
+        }
+        function subMenu2 {
+            Write-Host "SubMenu2" -ForegroundColor Magenta
+            sleep -seconds 2
+        }
+        function subMenu3 {
+            Write-Host "SubMenu 3" -ForegroundColor Magenta
+            sleep -seconds 2
+        }
+        #endregion
+        #region Menu-Object
+        $menu=@"
+        1 Show Menu 1
+        2 Show Menu 2
+        3 SubMenu
+
+        Q Quit
+
+        Select a task by number or Q to quit
+        "@
+        $submenu=@"
+        1 Show Sub -Menu 1
+        2 Show Sub -Menu 2
+        3 Show Sub -Menu 3
+
+        Q Quit
+
+        Select a task by number or Q to quit
+        "@
+        #endregion
+    }
+    process {
+
+        try {
+            Do {
+                #use a Switch construct to take action depending on what menu choice
+                #is selected.
+                Switch (Invoke-Menu -menu $menu -title "My Help Desk Tasks" -clear) {
+                "1" { Menu1 }
+                "2" { Menu2 }
+                "3" {
+                        Do {
+                            #use a Switch construct to take action depending on what menu choice
+                            #is selected.
+                            Switch (Invoke-Menu -menu $submenu -title "SubMenu" -clear) {
+                            "1" { subMenu1 }
+                            "2" { subMenu2 }
+                            "3" { subMenu3 }
+                            "Q" {Write-Host "Goodbye" -ForegroundColor Cyan
+                                Return
+                                }
+                            Default {Write-Warning "Invalid Choice. Try again."
+                                    sleep -milliseconds 750}
+                            } #switch
+                        } While ($True)
+                    }
+                "Q" {Write-Host "Goodbye" -ForegroundColor Cyan
+                    Return
+                    }
+                Default {Write-Warning "Invalid Choice. Try again."
+                        sleep -milliseconds 750}
+                } #switch
+            } While ($True)
+
+        }
+        catch {
+
+            }
+        }
+    end {
+        Write-Verbose "$($FunctionName): End."
+        $ErrorActionPreference = $TempErrAct
+    }
+}

@@ -1,0 +1,65 @@
+function %%FunctionName%% {
+    <#
+    .SYNOPSIS
+    TBD
+    .DESCRIPTION
+    TBD
+    .LINK
+    %%ModuleWebsite%%
+    .EXAMPLE
+    TBD
+    .NOTES
+    Author: %%ModuleAuthor%%
+    #>
+
+    [CmdletBinding()]
+    param(
+    )
+    begin {
+        if ($script:ThisModuleLoaded -eq $true) {
+            Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+        }
+        $FunctionName = $MyInvocation.MyCommand.Name
+        Write-Verbose "$($FunctionName): Begin."
+        $TempErrAct = $ErrorActionPreference
+        $ErrorActionPreference = "Stop"
+    }
+    process {
+
+        try {
+
+
+        }
+        catch {
+
+            "Stuff Failed" | Write-Error
+
+            $ExceptionLevel = 0
+            $BagroundColorErr = 'DarkRed'
+            $e = $_.Exception
+            $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
+
+            while ($e.InnerException) {
+                $ExceptionLevel++
+                if ($ExceptionLevel % 2 -eq 0) {
+                    $BagroundColorErr = 'DarkRed'
+                }
+                else {
+                    $BagroundColorErr = 'Black'
+                }
+
+                $e = $e.InnerException
+
+                $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
+                }
+            }
+        }
+    end {
+        Write-Verbose "$($FunctionName): End."
+        $ErrorActionPreference = $TempErrAct
+    }
+}
