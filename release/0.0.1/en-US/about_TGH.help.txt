@@ -1,0 +1,17 @@
+TOPIC
+    about_TGH
+
+SHORT DESCRIPTION
+    Module for Private Server use
+
+LONG DESCRIPTION
+    Module for Private Server use
+
+EXAMPLES
+    TBD
+
+KEYWORDS
+    Server, PrivateUse
+
+SEE ALSO
+    https://www.github.com/Kaimodo/TGH
