@@ -7,10 +7,10 @@ Project Site: [https://www.github.com/Kaimodo/TGH](https://www.github.com/Kaimod
 Module for Private Server use
 
 ## Why use the TGH Module?
-<< Fill this out >>
+Cause you are lazy
 
 ### Features
-<< Fill this out >>
+Dirty little helpers
 
 ## Installation
 TGH is available on the [PowerShell Gallery](https://www.powershellgallery.com/packages/TGH/).
