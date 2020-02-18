@@ -12,7 +12,7 @@
 RootModule = 'TGH.psm1'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '0.0.2'
+ModuleVersion = '0.0.3'
 
 # Unterstützte PSEditions
 # CompatiblePSEditions = @()
