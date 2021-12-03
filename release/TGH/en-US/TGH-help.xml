@@ -220,6 +220,47 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-GitSheet</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>GitSheet</command:noun>
+      <maml:description>
+        <maml:para>Show basic Git Commands</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Show a Cheet Sheet of the most basic Git Commands</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-GitSheet</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Author: Kai Krutscho</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- BEISPIEL 1 --------------------------</maml:title>
+        <dev:code>TBD</dev:code>
+        <dev:remarks>
+          <maml:para></maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/kaimodo/ToModule.git</maml:linkText>
+        <maml:uri>https://github.com/kaimodo/ToModule.git</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-PubIP</command:name>
       <command:verb>Get</command:verb>
       <command:noun>PubIP</command:noun>
@@ -256,6 +297,146 @@
       <maml:navigationLink>
         <maml:linkText>https://www.github.com/Kaimodo/TGH.git</maml:linkText>
         <maml:uri>https://www.github.com/Kaimodo/TGH.git</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-SS</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>SS</command:noun>
+      <maml:description>
+        <maml:para>Take a Screenshot and save it to BMP</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This function take a screenshot of your computer and saves it to a file of your choosing. It will only capture a single screen on a multi-monitor setup.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SS</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>FilePath</maml:name>
+          <maml:Description>
+            <maml:para>A mandatory parameter that specifies where you'd like the screenshot image to be saved. If a file is detected in this path, the function will not allow the capture to happen. There must be no file at this location. You may choose file extensions of JPG, JPEG and BMP.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>FilePath</maml:name>
+        <maml:Description>
+          <maml:para>A mandatory parameter that specifies where you'd like the screenshot image to be saved. If a file is detected in this path, the function will not allow the capture to happen. There must be no file at this location. You may choose file extensions of JPG, JPEG and BMP.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.IO.FileInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Author: Kai Krutscho</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- BEISPIEL 1 --------------------------</maml:title>
+        <dev:code>New-ScreenShot -FilePath C:\Screenshot.bmp</dev:code>
+        <dev:remarks>
+          <maml:para>This example will capture a screenshot of your current screen and save it to a BITMAP file at C:\ScreenShot.bmp.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://www.github.com/kaimodo/TGH</maml:linkText>
+        <maml:uri>https://www.github.com/kaimodo/TGH</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>about_comment_based_help</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Search-Google</command:name>
+      <command:verb>Search</command:verb>
+      <command:noun>Google</command:noun>
+      <maml:description>
+        <maml:para>Google Suche verwenden</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Schnell eine Google-Suche von Powershell starten</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Search-Google</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Author: Kai Krutscho</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- BEISPIEL 1 --------------------------</maml:title>
+        <dev:code>Search-Google Error code 5</dev:code>
+        <dev:remarks>
+          <maml:para>--New google search results will open listing top entries for 'error code 5'</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- BEISPIEL 2 --------------------------</maml:title>
+        <dev:code>search-google (gwmi win32_baseboard).Product maximum ram</dev:code>
+        <dev:remarks>
+          <maml:para>If you need to get the maximum ram for your motherboard, you can even use this type of syntax</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://www.github.com/kaimodo/ToModule</maml:linkText>
+        <maml:uri>https://www.github.com/kaimodo/ToModule</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>about_comment_based_help</maml:linkText>
+        <maml:uri></maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>

@@ -386,8 +386,10 @@ function Get-ADComputerByUser {
             $searchName = "*"
             $searchName += $Name
             $searchName += "*"
-
+            Write-Verbose "$($FunctionName): SearchName: $Name"
+            Write-Verbose "$($FunctionName): Setting List of Hosts"
             $Computers = Get-ADComputer -Filter ('tocLastLoggedOnuser -Like "{0}"' -f $searchName) -Properties * | Select-Object *
+            Write-Verbose "$($FunctionName): Itterating Hosts"
             ForEach ($Computer in $Computers) {
                 Write-Verbose "$($FunctionName): AD-Computer.Name: $($Computer.Name)"
 
@@ -483,6 +485,105 @@ function Get-Decryption {
 }
 
 
+function Get-GitSheet {
+    <#
+    .EXTERNALHELP TGH-help.xml
+    .LINK
+        https://www.github.com/Kaimodo/TGH/tree/master/release/0.0.3/docs/Functions/Get-GitSheet.md
+    #>
+
+    [CmdletBinding()]
+    param(
+    )
+    begin {
+        if ($script:ThisModuleLoaded -eq $true) {
+            Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+        }
+        $FunctionName = $MyInvocation.MyCommand.Name
+        Write-Verbose "$($FunctionName): Begin."
+        $TempErrAct = $ErrorActionPreference
+        $ErrorActionPreference = "Stop"
+    }
+    process {
+
+        try {
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+            Write-Host -NoNewline -ForegroundColor "DarkCyan" "PS C:\> "
+            Write-Host -NoNewline -ForegroundColor "White" "git clone "
+            Write-Host -NoNewline -ForegroundColor "Red" "https://github.com/"
+            Write-Host -NoNewline -ForegroundColor "Green" "<USERNAME>/<REPO>"
+            Write-Host -ForegroundColor "Red" ".git"
+
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+            Write-Host -NoNewline -ForegroundColor "DarkCyan" "PS C:\> "
+            Write-Host -NoNewline -ForegroundColor "White" "git add "
+            Write-Host -ForegroundColor "Green" "."
+
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+            Write-Host -NoNewline -ForegroundColor "DarkCyan" "PS C:\> "
+            Write-Host -NoNewline -ForegroundColor "White" "git commit "
+            Write-Host -NoNewline -ForegroundColor "Red" "-m "
+            Write-Host -ForegroundColor "Green" "'<MESSAGE>'"
+
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+            Write-Host -NoNewline -ForegroundColor "DarkCyan" "PS C:\> "
+            Write-Host -NoNewline -ForegroundColor "White" "git push "
+            Write-Host -NoNewline -ForegroundColor "Red" "origin "
+            Write-Host -ForegroundColor "Green" "Master"
+
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+            Write-Host -NoNewline -ForegroundColor "DarkCyan" "PS C:\> "
+            Write-Host -NoNewline -ForegroundColor "White" "git remote set-url "
+            Write-Host -NoNewline -ForegroundColor "Red" "origin "
+            Write-Host -NoNewline -ForegroundColor "Red" "https://github.com/"
+            Write-Host -NoNewline -ForegroundColor "Green" "<USERNAME>/<REPO>"
+            Write-Host -ForegroundColor "Red" ".git"
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+            Write-Host -NoNewline -ForegroundColor "DarkCyan" "PS C:\> "
+            Write-Host -NoNewline -ForegroundColor "White" "git remote add "
+            Write-Host -NoNewline -ForegroundColor "Red" "origin "
+            Write-Host -NoNewline -ForegroundColor "Red" "https://github.com/"
+            Write-Host -NoNewline -ForegroundColor "Green" "<USERNAME>/<REPO>"
+            Write-Host -ForegroundColor "Red" ".git"
+            Write-Host -ForegroundColor "Blue" "-------------------------------------------------------------------------"
+        }
+        catch {
+
+            #Stuff Failed" | Write-Error
+
+            $ExceptionLevel = 0
+            $BagroundColorErr = 'DarkRed'
+            $e = $_.Exception
+            $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
+
+            while ($e.InnerException) {
+                $ExceptionLevel++
+                if ($ExceptionLevel % 2 -eq 0) {
+                    $BagroundColorErr = 'DarkRed'
+                }
+                else {
+                    $BagroundColorErr = 'Black'
+                }
+
+                $e = $e.InnerException
+
+                $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
+                }
+            }
+        }
+    end {
+        Write-Verbose "$($FunctionName): End."
+        $ErrorActionPreference = $TempErrAct
+    }
+}
+
+
 function Get-PubIP {
     <#
     .EXTERNALHELP TGH-help.xml
@@ -520,6 +621,134 @@ function Get-PubIP {
     }
 }
 
+
+
+function New-SS {
+
+    <#
+    .EXTERNALHELP TGH-help.xml
+    .LINK
+        https://www.github.com/Kaimodo/TGH/tree/master/release/0.0.3/docs/Functions/New-SS.md
+    #>
+
+    [OutputType([System.IO.FileInfo])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [ValidateScript( { -not (Test-Path -Path $_ -PathType Leaf) })]
+        [ValidatePattern('\.jpg|\.jpeg|\.bmp')]
+        [string]$FilePath
+
+    )
+
+    # This block is used to provide optional one-time pre-processing for the function.
+    begin {
+
+        if ($script:ThisModuleLoaded -eq $true) {
+            Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+        }
+        $FunctionName = $MyInvocation.MyCommand.Name
+        Write-Verbose "$($FunctionName): Begin."
+        $TempErrAct = $ErrorActionPreference
+        $ErrorActionPreference = "Stop"
+        Add-Type -AssemblyName System.Windows.Forms
+        Add-type -AssemblyName System.Drawing
+    }
+
+    # This block is used to provide record-by-record processing for the function.
+    process {
+
+        try {
+            # Gather Screen resolution information
+            $Screen = [System.Windows.Forms.SystemInformation]::VirtualScreen
+
+            # Create bitmap using the top-left and bottom-right bounds
+            $bitmap = New-Object System.Drawing.Bitmap $Screen.Width, $Screen.Height
+
+            # Create Graphics object
+            $graphic = [System.Drawing.Graphics]::FromImage($bitmap)
+
+            # Capture screen
+            $graphic.CopyFromScreen($Screen.Left, $Screen.Top, 0, 0, $bitmap.Size)
+            Write-Verbose "$($FunctionName): Getting Screen"
+
+            # Save to file
+            $bitmap.Save($FilePath)
+            Write-Verbose "$($FunctionName): Saving File $($FilePath)"
+
+            Get-Item -Path $FilePath
+
+        }
+        catch {
+
+            "Stuff Failed" | Write-Error
+
+            $ExceptionLevel = 0
+            $BagroundColorErr = 'DarkRed'
+            $e = $_.Exception
+            $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+            $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
+
+            while ($e.InnerException) {
+                $ExceptionLevel++
+                if ($ExceptionLevel % 2 -eq 0) {
+                    $BagroundColorErr = 'DarkRed'
+                }
+                else {
+                    $BagroundColorErr = 'Black'
+                }
+
+                $e = $e.InnerException
+
+                $Msg = "[$($ExceptionLevel)] {$($e.Source)} $($e.Message)"
+                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Host -ForegroundColor Yellow -BackgroundColor $BagroundColorErr
+                $Msg.PadLeft($Msg.Length + (2 * $ExceptionLevel)) | Write-Output
+            }
+        }
+    }
+
+    # This block is used to provide optional one-time post-processing for the function.
+    end {
+        Write-Verbose "$($FunctionName): End."
+        $ErrorActionPreference = $TempErrAct
+    }
+}
+
+
+function Search-Google {
+
+	<#
+    .EXTERNALHELP TGH-help.xml
+    .LINK
+        https://www.github.com/Kaimodo/TGH/tree/master/release/0.0.3/docs/Functions/Search-Google.md
+    #>
+
+
+		# This block is used to provide optional one-time pre-processing for the function.
+		Begin {
+			$query = 'https://www.google.com/search?q='
+		}
+		Process {
+			Write-Host $args.Count, "Arguments detected"
+			"Parsing out Arguments: $args"
+			for ($i = 0; $i -le $args.Count; $i++) {
+				$args | % {"Arg $i `t $_ `t Length `t" + $_.Length, " characters"; $i++}
+			}
+
+
+			$args | % {$query = $query + "$_+"}
+			$url = "$query"
+		}
+		End {
+			$url.Substring(0, $url.Length - 1)
+			"Final Search will be $url"
+			"Invoking..."
+			start "$url"
+		}
+	}
 
 
 function Set-Encryption {

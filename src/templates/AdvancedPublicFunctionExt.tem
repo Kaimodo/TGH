@@ -75,7 +75,7 @@ function %%FunctionName%% {
 
     	}catch{
 			Write-Verbose "$($FunctionName): Process.catch"
-  		  	"Stuff Failed" | Write-Error
+
 
 			$ExceptionLevel   = 0
 			$BagroundColorErr = 'DarkRed'

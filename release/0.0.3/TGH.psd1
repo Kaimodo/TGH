@@ -3,7 +3,7 @@
 #
 # Generiert von: Kai Krutscho
 #
-# Generiert am: 18.02.2020
+# Generiert am: 03.12.2021
 #
 
 @{
@@ -69,7 +69,8 @@ Description = 'Module for Private Server use'
 # NestedModules = @()
 
 # Aus diesem Modul zu exportierende Funktionen. Um optimale Leistung zu erzielen, verwenden Sie keine Platzhalter und löschen den Eintrag nicht. Verwenden Sie ein leeres Array, wenn keine zu exportierenden Funktionen vorhanden sind.
-FunctionsToExport = 'Get-ADComputerByUser', 'Get-Decryption', 'Get-PubIP', 'Set-Encryption'
+FunctionsToExport = 'Get-ADComputerByUser', 'Get-Decryption', 'Get-GitSheet', 'Get-PubIP', 
+               'New-SS', 'Search-Google', 'Set-Encryption'
 
 # Aus diesem Modul zu exportierende Cmdlets. Um optimale Leistung zu erzielen, verwenden Sie keine Platzhalter und löschen den Eintrag nicht. Verwenden Sie ein leeres Array, wenn keine zu exportierenden Cmdlets vorhanden sind.
 CmdletsToExport = @()
@@ -109,11 +110,17 @@ PrivateData = @{
         # ReleaseNotes of this module
         # ReleaseNotes = ''
 
+        # Prerelease string of this module
+        # Prerelease = ''
+
+        # Flag to indicate whether the module requires explicit user acceptance for install/update/save
+        # RequireLicenseAcceptance = $false
+
         # External dependent modules of this module
-        # ExternalModuleDependencies = ''
+        # ExternalModuleDependencies = @()
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo-URI dieses Moduls

@@ -17,8 +17,17 @@ Get's the AD-Computer the specific user was Last Logged on
 ### [Get-Decryption](Get-Decryption.md)
 Decrypt a given Pharse from a given File
 
+### [Get-GitSheet](Get-GitSheet.md)
+Show basic Git Commands
+
 ### [Get-PubIP](Get-PubIP.md)
 Small little Helper for Public IP
+
+### [New-SS](New-SS.md)
+Take a Screenshot and save it to BMP
+
+### [Search-Google](Search-Google.md)
+Google Suche verwenden
 
 ### [Set-Encryption](Set-Encryption.md)
 Encrypt a given Pharse into a given File
