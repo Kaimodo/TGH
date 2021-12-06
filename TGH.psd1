@@ -3,7 +3,7 @@
 #
 # Generiert von: Kai Krutscho
 #
-# Generiert am: 18.02.2020
+# Generiert am: 06.12.2021
 #
 
 @{
@@ -12,7 +12,7 @@
 RootModule = 'TGH.psm1'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '0.0.3'
+ModuleVersion = '0.0.4'
 
 # Unterstützte PSEditions
 # CompatiblePSEditions = @()
@@ -109,11 +109,17 @@ PrivateData = @{
         # ReleaseNotes of this module
         # ReleaseNotes = ''
 
+        # Prerelease string of this module
+        # Prerelease = ''
+
+        # Flag to indicate whether the module requires explicit user acceptance for install/update/save
+        # RequireLicenseAcceptance = $false
+
         # External dependent modules of this module
-        # ExternalModuleDependencies = ''
+        # ExternalModuleDependencies = @()
 
     } # End of PSData hashtable
-    
+
  } # End of PrivateData hashtable
 
 # HelpInfo-URI dieses Moduls
