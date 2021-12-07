@@ -31,7 +31,7 @@ function %%FunctionName%% {
 
         }
         catch {
-
+            "⚠️ Error: $($Error[0]) ($($MyInvocation.MyCommand.Name):$($_.InvocationInfo.ScriptLineNumber))"
             }
         }
     end {

@@ -3,7 +3,7 @@
 #
 # Generiert von: Kai Krutscho
 #
-# Generiert am: 06.12.2021
+# Generiert am: 12/7/2021
 #
 
 @{
@@ -12,7 +12,7 @@
 RootModule = 'TGH.psm1'
 
 # Die Versionsnummer dieses Moduls
-ModuleVersion = '0.0.5'
+ModuleVersion = '0.1.0'
 
 # Unterstützte PSEditions
 # CompatiblePSEditions = @()

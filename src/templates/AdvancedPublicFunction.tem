@@ -83,17 +83,15 @@ function %%FunctionName%% {
 
     # This block is used to provide record-by-record processing for the function.
     process{
-
-    	try{
-
-
-    	}catch{
-
-  		  throw
-
-		  }finally{
-
-      }
+        try {
+            Write-Verbose "$($FunctionName): Process.try"
+        } catch {
+            "⚠️ Error: $($Error[0]) ($($MyInvocation.MyCommand.Name):$($_.InvocationInfo.ScriptLineNumber))"
+            $ErrorMessage = $_.Exception.Message
+            $FailedItem = $_.Exception.ItemName
+            Write-Output "`n $ErrorMessage "
+            Write-Output "`n $FailedItem "
+        }
     }
 
     # This block is used to provide optional one-time post-processing for the function.

@@ -72,6 +72,15 @@ function %%FunctionName%% {
 			Write-Verbose "$($FunctionName): Process"
     	try{
 				Write-Verbose "$($FunctionName): Process.try"
+				try {
+
+				} catch {
+					"⚠️ Error: $($Error[0]) ($($MyInvocation.MyCommand.Name):$($_.InvocationInfo.ScriptLineNumber))"
+					$ErrorMessage = $_.Exception.Message
+					$FailedItem = $_.Exception.ItemName
+					Write-Output "`n $ErrorMessage "
+					Write-Output "`n $FailedItem "
+				}
 
     	}catch{
 			Write-Verbose "$($FunctionName): Process.catch"

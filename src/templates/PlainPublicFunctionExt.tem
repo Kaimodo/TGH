@@ -32,8 +32,6 @@ function %%FunctionName%% {
         }
         catch {
 
-            "Stuff Failed" | Write-Error
-
             $ExceptionLevel = 0
             $BagroundColorErr = 'DarkRed'
             $e = $_.Exception
